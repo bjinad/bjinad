@@ -1,0 +1,73 @@
+body {
+  background-image: url('images/pv.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}
+.signup {
+  margin: auto;
+  width: 50%;
+  bottom: 100px;
+  right: 150px;
+  width: 275px;
+  height: 560px;
+  border: inset;
+  background-color: white;
+  border-radius: 15px 15px 15px 0px;
+  padding: 10px;
+  font-size: 9px;
+  font-weight: 600;
+}
+.nav{
+  line-height: 0.009;
+  text-align: center;
+  padding-top: 5px;
+}
+.hDesc {
+  color: darkblue;
+  font-weight: 900;
+  font-size: 15px
+}
+.pDesc{
+  color: grey;
+  font-size: 9px;
+}
+input[type=text], [type=email], [type=tel], [type=Password], select {
+  width: 100%;
+  background-color: aliceblue;
+  padding: 12px 20px;
+  margin: 8px 0;
+  font-size: 9px;
+  border: hidden;
+  box-sizing: border-box;
+  outline: none;
+}
+input[type=submit] {
+  width: 100%;
+  background-color: darkblue;
+  color: white;
+  padding: 12px 20px;
+  margin: 8px 0;
+  font-size: 9px;
+  border: none;
+  border-radius: 10px 10px 10px 0px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: midnightblue;
+}
+.login{
+  color: white;
+  font-size: 9px;
+  text-align: center;
+  padding-top: 22px;
+}
