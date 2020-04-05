@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Functions and Conditional Stmts and Array and Objects</title>
+</head>
+  <body>
+    <script>
+        //functions should have a specific purpose
+          //reusability and shortcuts block of codes
+          //arrays are list like Objects
+          function myFirstFunction (){
+            console.log("Yay")
+
+            return "Yay it works"
+          }
+          let myArray = ["a",4,6,"Jeff"]
+          console.log(myArray)
+          console.log(myArray[3])
+
+          let myArr = [4,5,6,7]
+          let myObject = {name: "Jeff", role: "Mentor", myArr: [1,2,3,4]}
+          let newArr = [myArr, myObject, 34, "Test"]
+          console.log(myObject.role)
+          console.log(myObject.myArr)
+          console.log(newArr)
+          console.log(newArr[1])
+
+          let x = myFirstFunction()
+          console.log(x)
+      </script>
+    </body>
+</html>
