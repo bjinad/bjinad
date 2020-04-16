@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Interest Calculator</title>
+  <title>Interest Calculator</title>
 </head>
-  <body>
-    <script>
 
-      let data = [{principal: 2500, time: 1.8},
-                  {principal: 1000, time: 5},
-                  {principal: 3000, time: 1},
-                  {principal: 2000, time: 3}];
+<body>
+  <script>
+    let data = [{
+        principal: 2500,
+        time: 1.8
+      },
+      {
+        principal: 1000,
+        time: 5
+      },
+      {
+        principal: 3000,
+        time: 1
+      },
+      {
+        principal: 2000,
+        time: 3
+      }
+    ];
 
-      function interestCalculator(rate){
-          let interest = [];
-          let interestRate = [];
-          let interestData = data.map(element => {
-              return {
-              ...element,
-              rate: interestRate,
-              interest: interest
-          }
-        });
-        interestData.forEach((element, index, array) => {
+    function interestCalculator(rate) {
+      let interest = [];
+      let interestRate;
+      let interestData = data.map(element => {
+        return {
+          ...element,
+          rate: interestRate,
+          interest: interest
+        }
+      });
+      interestData.forEach((element, index, array) => {
         console.log(element);
-        });
-        for(let i = 0; i < rate.length; i++){
-          if (rate[i].principal >= 2500 && rate[i].time > 1 && rate[i].time < 3){
-          interestRate.push(3) && interest.push(rate[i].principal*rate[i].time*3/100)
-        }
-          else if (rate[i].principal >= 2500 && rate[i].time >= 3){
-            interestRate.push(4) && interest.push(rate[i].principal*rate[i].time*4/100)
-        }
-          else if (rate[i].principal < 2500 || rate[i].time <= 1){
-            interestRate.push(2) && interest.push(rate[i].principal*rate[i].time*2/100)
-        }
-          else {
-            interestRate.push(1) && interest.push(rate[i].principal*rate[i].time*1/100)
+      });
+      for (let i = 0; i < rate.length; i++) {
+        if (rate[i].principal >= 2500 && rate[i].time > 1 && rate[i].time < 3) {
+          interestRate = 3 && interest.push(rate[i].principal * rate[i].time * 3 / 100)
+        } else if (rate[i].principal >= 2500 && rate[i].time >= 3) {
+          interestRate = 4 && interest.push(rate[i].principal * rate[i].time * 4 / 100)
+        } else if (rate[i].principal < 2500 || rate[i].time <= 1) {
+          interestRate = 2 && interest.push(rate[i].principal * rate[i].time * 2 / 100)
+        } else {
+          interestRate = 1 && interest.push(rate[i].principal * rate[i].time * 1 / 100)
         }
         return interestData;
-        }
       }
+    }
 
-      (interestCalculator(data));
+    interestCalculator(data);
+  </script>
+</body>
 
-    </script>
-  </body>
 </html>

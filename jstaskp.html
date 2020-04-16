@@ -1,61 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Interest Calculator</title>
+  <title>Largest Sum Finder</title>
 </head>
-  <body>
-    <script>
 
-      let data = [{principal: 2500, time: 1.8},
-                  {principal: 1000, time: 5},
-                  {principal: 3000, time: 1},
-                  {principal: 2000, time: 3}];
+<body>
+  <script>
+    let arr = [1, 2, 3, 4, 5];
 
-      //data.forEach((element, index, array) =>{
-      //console.log(element.principal);
-        //console.log(element.time);
-        //console.log(index);});
-
-      let rate = [];
-
-      function interestCalculator(){
-          for(let i = 0; i < data.length; i++){
-            if (data[i].principal >= 2500 && data[i].time > 1 && data[i].time < 3){
-            rate.push(3);
-            }
-            else if (data[i].principal >= 2500 && data[i].time >= 3){
-            rate.push(4);
-            }
-            else if (data[i].principal < 2500 || data[i].time <= 1){
-            rate.push(2);
-            }
-            else{
-            rate.push(2);
-            }
+    function largestSum(arr) {
+      //create a temporary array to prevent mutation of original array
+      let tempArr = [...arr]
+      //create two empty strings- firstNum and secondNum to hold the created numbers
+      let firstNum = "",
+        secondNum = "",
+        maxNum, maxIndex;
+      //initialize loop
+      for (let num in arr) {
+        //find the largest number in the array
+        maxNum = Math.max(...tempArr);
+        maxIndex = tempArr.indexOf(maxNum)
+        //alternatively concatenate largest number between firstNum and secondNum
+        if (num % 2 === 0) {
+          //remove largest number from array so the next largest number can be found
+          firstNum += maxNum;
         }
-            console.log(rate);
+        //repeat steps until no numbers remain in the array
+        else {
+          secondNum += maxNum;
+        }
+        tempArr.splice(maxIndex, 1)
       }
+      console.log(firstNum, secondNum);
+      //return array consisting of firstNum and secondNum
+      return [firstNum, secondNum];
+    }
 
-      interestCalculator();
+    largestSum(arr)
+  </script>
+</body>
 
-
-
-      let interestData = data.map(element => {
-      return {
-        ...element,
-        interest: (element.principal*element.time)/100
-        };
-      });
-
-      console.log(interestData);
-
-        //console.log(data2)
-
-      //let sum = data.map(element => element.principal).reduce((a, b) => a + b, 0);
-      //console.log(sum);
-      //let average = sum / data.length;
-      //console.log(average);
-
-    </script>
-  </body>
 </html>
