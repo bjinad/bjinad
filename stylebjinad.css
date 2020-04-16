@@ -155,3 +155,7 @@ form{
 .icon{
   padding-right: 2px;
 }
+@media only screen and (max-width:620px) {
+  .sidenav, .main, .navi{
+    width:100%;
+  }
