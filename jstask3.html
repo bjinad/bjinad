@@ -15,32 +15,32 @@
       let newStr = "";
       //initialize loop
       for (let i = 1; i <= k; i++){
-        //if divisble by 2 && 3 && 5 "yu"-"gi"-"oh"
+        //if divisble by 2 && 3 && 5 replace by "yu"-"gi"-"oh"
         if(i%2===0 && i%3===0 && i%5===0){
           newStr ="yu-gi-oh"
         }
-        //if divisible by 2 && 3 the "yu"-"gi"
+        //if divisible by 2 && 3 replace by "yu"-"gi"
         else if(i%2===0 && i%3===0){
           newStr ="yu-gi"
         }
-        //if divisble by 3 && 5 the "gi"-"oh"
+        //if divisble by 3 && 5 replace by "gi"-"oh"
         else if(i%3===0 && i%5===0){
           newStr ="gi-oh"
         }
-        //if divisble by 2 && 5 the "yu"-"oh"
+        //if divisble by 2 && 5 replace by "yu"-"oh"
         else if(i%2===0 && i%5===0){
           newStr ="yu-oh"
         }
-        /*Numbers divisible by 2 are replaced by "yu"*/
+        /*if divisible by 2 only replace by "yu"*/
         else if (i%2===0){
         //  if (newStr != "")
           newStr = "yu"
         }
-        /* Numbers divisible by 3 are replaced by "gi"*/
+        /* if divisible by 3 only replace by "gi"*/
         else if (i%3===0) {
           newStr = "gi"
         }
-        /* Numbers divisible by 5 are replaced by "oh"*/
+        /* if divisible by 5 only replace by "oh"*/
         else if (i%5===0) {
           newStr = "oh"
         }
