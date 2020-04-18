@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Random Number</title>
+</head>
+<body>
+
+  <<script type="text/javascript">
+    /*given an array of numbers and a number k, return whether
+    any two numbers from the given array add up to k.
+    let your given array be all odd numbers from 15 to 35
+    let your k be a random number between 47 and 57
+    log the random number and the array to the console*/
+
+    array = [15,17,19,21,23,25,27,29,31,33,35];
+    let k = Math.floor(Math.random() * 11) + 47;
+    console.log(`Random number is ${k}`);
+
+    let sums = [];
+    function twoSum(array, k){
+      for (let i=0; i<array.length; i++){
+        for (let j=i+1; j<array.length; j++){
+          if (array[i] + array[j] === k){
+            sums.push([array[i] + array[j]]);
+          }
+        }
+      }
+      if(sums.length !== 0){
+        console.log(true);
+        return sums;
+      }
+      else{
+        console.log(false);
+      }
+    }
+    twoSum(array, k);
+    for (i=0; i < sums.length; i++){
+      console.log(`The pair [${sums[i]}] adds up to ${k}`);
+    }
+
+    </script>
+</body>
+</html>

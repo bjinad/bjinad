@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Yu-Gi-Oh</title>
+</head>
+
+<body>
+  <<script type="text/javascript">
+
+    /*function(k). Check if numbers from 1 to x are the below:*/
+    function divisible(k){
+      let result = [];
+      let newStr = "";
+      //initialize loop
+      for (let i = 1; i <= k; i++){
+        //if divisble by 2 && 3 && 5 "yu"-"gi"-"oh"
+        if(i%2===0 && i%3===0 && i%5===0){
+          newStr ="yu-gi-oh"
+        }
+        //if divisible by 2 && 3 the "yu"-"gi"
+        else if(i%2===0 && i%3===0){
+          newStr ="yu-gi"
+        }
+        //if divisble by 3 && 5 the "gi"-"oh"
+        else if(i%3===0 && i%5===0){
+          newStr ="gi-oh"
+        }
+        //if divisble by 2 && 5 the "yu"-"oh"
+        else if(i%2===0 && i%5===0){
+          newStr ="yu-oh"
+        }
+        /*Numbers divisible by 2 are replaced by "yu"*/
+        else if (i%2===0){
+        //  if (newStr != "")
+          newStr = "yu"
+        }
+        /* Numbers divisible by 3 are replaced by "gi"*/
+        else if (i%3===0) {
+          newStr = "gi"
+        }
+        /* Numbers divisible by 5 are replaced by "oh"*/
+        else if (i%5===0) {
+          newStr = "oh"
+        }
+        /* Numbers are unchanged if not divsible by any of the above*/
+        else {
+          newStr = i;
+        }
+        result.push(newStr);
+      }
+      console.log(result);
+      //return array of 1 tokx with replacements and inclusive
+      return result;
+    }
+    divisible(33);
+
+    </script>
+</body>
+
+</html>
