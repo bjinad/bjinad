@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz.css">
+    <title>End Quiz</title>
+  </head>
+  <body>
+    <div class="container">
+    <div id="end" class="flex-center flex-column">
+      <h1 id="finalScore"></h1>
+      <form>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="username"
+        />
+        <button
+          type="submit"
+          class="btn"
+          id="saveScoreBtn"
+          onclick="saveHighScore(event)"
+          disabled
+        >
+          Save
+        </button>
+      </form>
+      <a class="btn" href="quiz.html">Play Again</a>
+      <a class="btn" href="/">Go Home</a>
+    </div>
+  </div>
+  <<script type="text/javascript">
+    const username = document.getElementById("username");
+const saveScoreBtn = document.getElementById("saveScoreBtn");
+const finalScore = document.getElementById("finalScore");
+const mostRecentScore = localStorage.getItem("mostRecentScore");
+finalScore.innerText = mostRecentScore;
+
+username.addEventListener("keyup", () => {
+  saveScoreBtn.disabled = !username.value;
+});
+
+saveHighScore = e => {
+  console.log("clicked the save button!");
+  e.preventDefault();
+};
+  </script>
+  </body>
+</html>

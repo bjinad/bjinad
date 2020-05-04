@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM STAGE 4</title>
+  </head>
+  <style>
+    .heading {
+        font-size: 20px;
+        color: blue;
+    }
+</style>
+  <body>
+    <header>
+        <a href="/">Home</a>
+    </header>
+
+    <p>This is a paragraph</p>
+    <p class="heading">StartNG</p>
+
+    <script type="text/javascript">
+
+   let newParagraph = document.createElement("p");
+
+     newParagraph.innerText = "My name is Tunde";
+
+   console.log(newParagraph.innerText);
+
+   let bodyNode = document.querySelector("body");
+      bodyNode.appendChild(newParagraph)
+
+      document.write(Date());
+
+      const anchorNode = document.querySelector("a");
+      const anchorParent = anchorNode.parentElement;
+
+  //    <p class="heading">StartNG</p>
+
+    //  const paragraph = document.querySelector("p");
+    //  paragraph.classList.add("small-heading");
+    //  paragraph.classList.remove("heading");
+
+    //  <p>This is a paragraph</p>
+
+      //const paragraph = document.querySelector("p");
+      //paragraph.addEventListener('click', function() {
+//console.log("Clicked!!")  })
+const paragraph = document.querySelector("p");
+   paragraph.addEventListener('click', function() {
+      paragraph.classList.toggle("heading");
+   })
+
+    </script>
+  </body>
+</html>

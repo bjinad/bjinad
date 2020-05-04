@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylequiz.css">
+    <title>Quiz Game</title>
+  </head>
+  <body>
+
+    <h1>Who wants to be Millionaire</h1>
+    <div class="quiz-container">
+      <div id="quiz"></div>
+    </div>
+    <div id="hud-item">
+      <p class="hud-prefix">Score</p>
+      <h1 class="hud-main-text" id="score">0</h1></div>
+    <!-- Progress bar -->
+    <div id="myProgress">
+      <div id="myBar"></div>
+    </div>
+    <!--Buttons-->
+    <button id="previous">Previous Question</button>
+    <button id="next">Next Question</button>
+    <button id="submit">Submit Quiz</button>
+    <div id="results"></div>
+
+    <script>
+
+    const quizContainer = document.getElementById('quiz');
+    const resultsContainer = document.getElementById('results');
+    const submitButton = document.getElementById('submit');
+    const scoreText = document.getElementById("score");
+    const CORRECT_BONUS = 10;
+    let myBarWidth = 0;
+    let score = 0;
+
+    //array of objects with questions
+    let myQuestions = [{
+        question: "What does it mean to be diversified?",
+        answers: {
+          a: "No. of Bonds = No. of Stocks",
+          b: "20 different stocks in various industries you like",
+          c: "Owning investments that react differently to events"
+        },
+        correctAnswer: "c"
+      },
+      {
+        question: "What does buying a share of a mutual fund mean?",
+        answers: {
+          a: "A share of all the investments the fund owns",
+          b: "Ownership stake in the mutual fund company",
+          c: "Right to vote at shareholder meetings for the companies the fund owns"
+        },
+        correctAnswer: "b"
+      },
+      {
+        question: "What is the major difference between ETFs and mutual funds?",
+        answers: {
+          a: "ETFs trades throughout the trading day while funds trade once",
+          b: "ETFs are passively managed while funds are actively managed",
+          c: "ETFs are unmanaged while funds are managed"
+        },
+        correctAnswer: "a"
+      },
+      {
+        question: "What is the difference between a ROTH-IRA and IRA?",
+        answers: {
+          a: "Roth contributions are after-tax, IRA are pre-tax",
+          b: "Roth contributions are pre-tax, IRA are after-tax",
+          c: "Roth are for people who want non-traditional retirement"
+        },
+        correctAnswer: "a"
+      },
+      {
+        question: "What does it mean to short a stock?",
+        answers: {
+          a: "To only pay for part of your stock purchase",
+          b: "To sell stock you don't own",
+          c: "To sell part of you losing position in a stock"
+        },
+        correctAnswer: "b"
+      }
+    ];
+
+      function buildQuiz() {
+        // variable to store the HTML output
+        const output = [];
+
+        // for each question...
+        myQuestions.forEach(
+          (currentQuestion, questionNumber) => {
+
+            // variable to store the list of possible answers
+            const answers = [];
+
+            // and for each available answer...
+            for (letter in currentQuestion.answers) {
+
+              // ...add an HTML radio button
+              answers.push(
+                `<label>
+          <input type="radio" name="question${questionNumber}" value="${letter}">
+          ${letter} :
+          ${currentQuestion.answers[letter]}
+        </label>`
+              );
+            }
+
+            // add this question and its answers to the output
+            output.push(
+              `<div class="slide">
+        <div class="question"> ${currentQuestion.question} </div>
+        <div class="answers"> ${answers.join("")} </div>
+      </div>`
+            );
+          }
+        );
+
+        // finally combine our output list into one string of HTML and put it on the page
+        quizContainer.innerHTML = output.join('');
+      }
+      let numberQuestions = myQuestions.length;
+
+      function showResults() {
+
+        // gather answer containers from our quiz
+        const answerContainers = quizContainer.querySelectorAll('.answers');
+
+        // keep track of user's answers
+        let numCorrect = 0;
+
+        // for each question...
+        myQuestions.forEach((currentQuestion, questionNumber) => {
+
+          // find selected answer
+          const answerContainer = answerContainers[questionNumber];
+          const selector = `input[name=question${questionNumber}]:checked`;
+          const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+          // if answer is correct
+          if (userAnswer === currentQuestion.correctAnswer) {
+            // add to the number of correct answers
+            incrementScore(CORRECT_BONUS);
+
+            // color the answers green
+            answerContainers[questionNumber].style.color = 'green';
+          }
+          // if answer is wrong or blank
+          else {
+            // color the answers red
+            answerContainers[questionNumber].style.color = 'red';
+          }
+        });
+
+        // show number of correct answers out of total
+        resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+      }
+
+      incrementScore = num => {
+        score += num;
+        scoreText.innerText = score;
+      };
+
+      function showSlide(n) {
+        slides[currentSlide].classList.remove('active-slide');
+        slides[n].classList.add('active-slide');
+        currentSlide = n;
+        if (currentSlide === 0) {
+          previousButton.style.display = 'none';
+        } else {
+          previousButton.style.display = 'inline-block';
+        }
+        if (currentSlide === slides.length - 1) {
+          nextButton.style.display = 'none';
+          submitButton.style.display = 'inline-block';
+        } else {
+          nextButton.style.display = 'inline-block';
+          submitButton.style.display = 'none';
+        }
+      }
+
+      function showNextSlide() {
+        showSlide(currentSlide + 1);
+        addProgress();
+      }
+
+      function showPreviousSlide() {
+       showSlide(currentSlide - 1);
+       deductProgress();
+      }
+
+      buildQuiz();
+
+      const previousButton = document.getElementById("previous");
+      const nextButton = document.getElementById("next");
+      const slides = document.querySelectorAll(".slide");
+      let currentSlide = 0;
+
+      showSlide(0);
+
+      function addProgress() {
+    //increase myBarWidth by 100/questionsNumber
+    myBarWidth += 100 / numberQuestions;
+    // make sure that width of the progress bar won't be more than 100% & fix for questionsNumber that are not dividers of 100
+    if (myBarWidth > 100) {
+        myBarWidth = 100;
+    }
+    // update the width #myBar by changing the css
+    document.getElementById("myBar").style.width = myBarWidth + "%";
+}
+
+// deduct progress
+function deductProgress() {
+    //decrease myBarWidth by 100/questionsNumber
+    myBarWidth -= 100 / myQuestions.length;
+    // make sure that width of the progress bar won't be more than 0% & fix for questionsNumber that are not dividers of 100
+    if (myBarWidth < 0) {
+        myBarWidth = 0;
+    }
+    // update the width #myBar by changing the css
+    document.getElementById("myBar").style.width = myBarWidth + "%";
+}
+addProgress();
+      submitButton.addEventListener('click', showResults);
+      previousButton.addEventListener("click", showPreviousSlide);
+      nextButton.addEventListener("click", showNextSlide);
+
+    </script>
+  </body>
+</html>
